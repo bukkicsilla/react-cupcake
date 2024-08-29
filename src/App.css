@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+#Home-img {
+  max-width: 60%;
+  max-height: 60%;
+}
+img {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.Cupcakes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 100px;
+}
+.Cupcake {
+  border: 2px solid plum;
+  padding: 10px;
+  margin: 15px;
+}
