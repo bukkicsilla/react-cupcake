@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import Cupcakes from "./Cupcakes";
+import CupcakeShow from "./CupcakeShow";
 import axios from "axios";
 import "./App.css";
 import React, { useEffect, useState } from "react";
@@ -31,6 +32,7 @@ function App({ cupcakesDefault }) {
           <Route exact path="/" element={<Home />} />
           <Route path="/cupcakes" element={<Cupcakes cupcakes={cupcakes} />} />
           <Route path="/addcupcake" element={<h3>Add cupcake</h3>} />
+          <Route path="/cupcakes/:id" element={<CupcakeShow />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </BrowserRouter>

@@ -40,9 +40,14 @@
   max-width: 60%;
   max-height: 60%;
 }
-img {
+#CupcakeShow-img {
+  max-width: 500px;
+  max-height: 500px;
+}
+#Cupcake-img {
   max-width: 150px;
   max-height: 150px;
+  cursor: pointer;
 }
 
 .Cupcakes {
@@ -56,4 +61,10 @@ img {
   border: 2px solid plum;
   padding: 10px;
   margin: 15px;
+}
+.CupcakeShow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
 }
