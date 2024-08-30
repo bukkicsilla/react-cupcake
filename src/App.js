@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import Cupcakes from "./Cupcakes";
 import CupcakeShow from "./CupcakeShow";
 import axios from "axios";
@@ -7,6 +6,8 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import NavBar from "./NavBar";
 import Home from "./Home";
+import NewCupcakeForm from "./NewCupcakeForm";
+import UpdateCupcakeForm from "./UpdateCupcakeForm";
 
 const BASE_URL = "http://localhost:5000/api/cupcakes";
 
@@ -16,14 +17,19 @@ function App({ cupcakesDefault }) {
     async function getCupcakes() {
       try {
         const res = await axios.get(BASE_URL);
-        console.log(res.data.cupcakes);
         setCupcakes(res.data.cupcakes);
       } catch (e) {
         console.log("Error", e);
       }
     }
     getCupcakes();
-  }, []);
+  }, [cupcakes]);
+  async function addCupcake(data = {}) {
+    const res = await axios.post(BASE_URL, data);
+  }
+  async function updateCupcake(data = {}) {
+    const res = await axios.patch(`${BASE_URL}/${data.id}`, data);
+  }
   return (
     <div className="App">
       <BrowserRouter>
@@ -31,8 +37,15 @@ function App({ cupcakesDefault }) {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/cupcakes" element={<Cupcakes cupcakes={cupcakes} />} />
-          <Route path="/addcupcake" element={<h3>Add cupcake</h3>} />
+          <Route
+            path="/addcupcake"
+            element={<NewCupcakeForm addCupcake={addCupcake} />}
+          />
           <Route path="/cupcakes/:id" element={<CupcakeShow />} />
+          <Route
+            path="/cupcakes/:id/update"
+            element={<UpdateCupcakeForm updateCupcake={updateCupcake} />}
+          />
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </BrowserRouter>
